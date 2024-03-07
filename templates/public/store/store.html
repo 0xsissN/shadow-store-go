@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juegos</title>
+    <link rel="icon" href="images/logo-main.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style-store.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <img src="images/logo-main.png" alt="" width="80px" class="logo">
+                <a class="navbar-brand" href="index.html">Shadow Store</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Tienda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="store.html">Juegos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="news.html">Noticias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="about.html">Acerca de nosotros</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <form id="searchForm" onsubmit="solve(); return false;">
+            <input type="text" id="gameCode" placeholder="Buscar juego" required>
+            <button type="submit">Buscar</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Más vendidos</th>
+                    <th>Más jugados</th>
+                    <th>Próximamente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GameBones1.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Skull and Bones</h5>
+                                <p class="card-text">59.99 USDT</p>
+                                <button
+                                    onclick="document.getElementById('skull-and-bones').style.display='block'">Comprar</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="skull-and-bones" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('skull-and-bones').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GameBones1.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Skull and Bones</h5>
+                                        <p class="card-text">Adéntrate en el peligroso mundo abierto de Skull and Bones,
+                                            una experiencia cooperativa de rol y acción, para convertirte en un temible
+                                            cabecilla pirata. Participa en emocionantes combates navales, fabrica barcos
+                                            únicos, forja alianzas inverosímiles, supera retos y desata el caos en los
+                                            mares. Forma parte de un mundo absorbente que se expande cada temporada con
+                                            nuevos desafíos y funcionalidades.</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-1').style.display='block'">Finalizar
+                                            compra</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-1" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-1').style.display='none'">&times;</span>
+                        <p>Compra finalizada gracias por la preferencia.</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesFortnite5.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Fortnite</h5>
+                                <p class="card-text">Gratis</p>
+                                <button
+                                    onclick="document.getElementById('fortnite').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="fortnite" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('fortnite').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesFortnite5.jpg" class="img-fluid rounded-start"
+                                        alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Fortnite</h5>
+                                        <p class="card-text">Crea, juega y combate con amigos de forma gratuita en
+                                            Fortnite. Consigue ser el último jugador en pie en Battle Royale y Cero
+                                            construcción, disfruta de conciertos y eventos en directo, o descubre
+                                            experiencias nuevas entre más de un millón de juegos diseñados por
+                                            creadores: carreras, parkour, supervivencia zombi y mucho más. Cada isla de
+                                            Fortnite tiene una calificación por edades individual para que encuentres la
+                                            más adecuada para ti y tus amigos.</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-2').style.display='block'">Descargar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-2" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-2').style.display='none'">&times;</span>
+                        <p>Comenzando descarga...</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesBlack9.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Black Myth: Wukong</h5>
+                                <p class="card-text">Disponible el 20/08/24</p>
+                                <button
+                                    onclick="document.getElementById('wukong').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="wukong" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('wukong').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesBlack9.png" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Black Myth: Wukong</h5>
+                                        <p class="card-text">Black Myth: Wukong es un RPG de acción inspirado en la
+                                            mitología china. Encarnarás al Predestinado, que ha de embarcarse en un
+                                            viaje repleto de peligros y maravillas, donde descubrirá la verdad que se
+                                            oculta tras una gloriosa leyenda del pasado.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesNight2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Nightingale</h5>
+                                <p class="card-text">13.49 USDT</p>
+                                <button
+                                    onclick="document.getElementById('nightingale').style.display='block'">Comprar</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="nightingale" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('nightingale').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesNight2.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Nightingale</h5>
+                                        <p class="card-text">Nightingale es un juego JcE de supervivencia y creación en
+                                            primera persona, ambientado en un mundo abierto en el que se puede jugar en
+                                            solitario o en cooperativo con amigos. Construye, crea, lucha y explora una
+                                            red de portales místicos que se extiende a lo largo de una pléyade de reinos
+                                            asombrosos.</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-3').style.display='block'">Finalizar
+                                            compra</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-3" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-3').style.display='none'">&times;</span>
+                        <p>Compra finalizada gracias por la preferencia.</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesRocket6.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Rocket League</h5>
+                                <p class="card-text">Gratis</p>
+                                <button
+                                    onclick="document.getElementById('rocket-league').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="rocket-league" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('rocket-league').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesRocket6.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Rocket League</h5>
+                                        <p class="card-text">Rocket League combina el fútbol de estilo arcade con el
+                                            caos a cuatro ruedas, unos controles fáciles y una competición fluida y
+                                            basada en la física.</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-4').style.display='block'">Descargar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-4" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-4').style.display='none'">&times;</span>
+                        <p>Comenzando descarga...</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesWolf10.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">The Wolf Among Us 2</h5>
+                                <p class="card-text">Próximamente</p>
+                                <button
+                                    onclick="document.getElementById('the-wolf').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="the-wolf" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('the-wolf').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesWolf10.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">The Wolf Among Us 2</h5>
+                                        <p class="card-text">Los personajes de los cuentos son reales y caminan entre
+                                            nosotros en la ciudad de Nueva York. Ponte en la piel del sheriff de
+                                            Fabletown, Bigby "el lobo feroz", y regresa a un turbio mundo de novela
+                                            negra donde no hay finales de cuento de hadas.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesGta3.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Grand Theft Auto V</h5>
+                                <p class="card-text">19.99 USDT</p>
+                                <button
+                                    onclick="document.getElementById('gta-v').style.display='block'">Comprar</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="gta-v" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('gta-v').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesGta3.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Grand Theft Auto V</h5>
+                                        <p class="card-text">Un joven estafador callejero, un ladrón de bancos retirado
+                                            y un psicópata aterrador se meten en un lío, y tendrán que llevar a cabo una
+                                            serie de peligrosos golpes para sobrevivir en una ciudad en la que no pueden
+                                            confiar en nadie, y mucho menos los unos en los otros.</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-5').style.display='block'">Finalizar
+                                            compra</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-5" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-5').style.display='none'">&times;</span>
+                        <p>Compra finalizada gracias por la preferencia.</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesValorant7.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Valorant</h5>
+                                <p class="card-text">Gratis</p>
+                                <button
+                                    onclick="document.getElementById('valorant').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="valorant" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('valorant').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesValorant7.jpg" class="img-fluid rounded-start"
+                                        alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Valorant</h5>
+                                        <p class="card-text">VALORANT es un shooter táctico 5v5 basado en personajes que
+                                            está ambientado en un escenario internacional. Sed más listos que vuestros
+                                            oponentes, superadlos con grandes jugadas y eclipsadlos con habilidades
+                                            tácticas, armas precisas y trabajo en equipo adaptable.</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-6').style.display='block'">Descargar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-6" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-6').style.display='none'">&times;</span>
+                        <p>Comenzando descarga...</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesFrost11.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Frostpunk 2</h5>
+                                <p class="card-text">Próximamente</p>
+                                <button
+                                    onclick="document.getElementById('frostpunk-2').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="frostpunk-2" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('frostpunk-2').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesFrost11.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Frostpunk 2</h5>
+                                        <p class="card-text">Descubre un juego de supervivencia de ciudades ambientado
+                                            30 años después de que una apocalíptica tormenta de nieve asolase la Tierra
+                                            y la convirtiese en un páramo gélido y hostil. En Frostpunk 2, te
+                                            enfrentarás a una nueva y letal amenaza: la naturaleza humana y su
+                                            insaciable sed de poder.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesAlan4.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Alan Wake 2</h5>
+                                <p class="card-text">9.19 USDT</p>
+                                <button
+                                    onclick="document.getElementById('alan-wake-2').style.display='block'">Comprar</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="alan-wake-2" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('alan-wake-2').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesAlan4.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Alan Wake 2</h5>
+                                        <p class="card-text">Llega Saga Anderson para investigar asesinatos ritualistas
+                                            en un pequeño pueblo. Alan Wake escribe una oscura historia para dar forma a
+                                            la realidad que lo rodea. Estos dos héroes están conectados de algún modo.
+                                            ¿Podrán convertirse en los héroes que han de ser?</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-7').style.display='block'">Finalizar
+                                            compra</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-7" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-7').style.display='none'">&times;</span>
+                        <p>Compra finalizada gracias por la preferencia.</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesGenshin8.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Genshin Impact</h5>
+                                <p class="card-text">Gratis</p>
+                                <button
+                                    onclick="document.getElementById('genshin-impact').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="genshin-impact" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('genshin-impact').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesGenshin8.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Genshin Impact</h5>
+                                        <p class="card-text">Comienza tu travesía en Teyvat para buscar a tu familiar
+                                            perdido y encontrar respuestas sobre los dioses elementales. Explora cada
+                                            rincón de este mundo maravilloso, une fuerzas con un amplio repertorio de
+                                            personajes, y revela los muchos misterios ocultos...</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-8').style.display='block'">Descargar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-8" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-8').style.display='none'">&times;</span>
+                        <p>Comenzando descarga...</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 17rem;">
+                            <img src="images/store/GamesWorld12.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Homeworld 3</h5>
+                                <p class="card-text">Disponible el 13/05/24</p>
+                                <button
+                                    onclick="document.getElementById('homeworld-3').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="homeworld-3" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('homeworld-3').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesWorld12.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Homeworld 3</h5>
+                                        <p class="card-text">Táctica, hermosa y totalmente única, la saga de ciencia
+                                            ficción y estrategia en tiempo real que ganó el premio al mejor juego del
+                                            año regresa con Homeworld 3. Toma el mando y ábrete paso combatiendo a
+                                            flotas enemigas en un deslumbrante espacio completamente en 3D mientras, a
+                                            tu alrededor, se desarrolla una historia a escala galáctica.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <th colspan="5">Populares</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="card" style="width: 14rem;">
+                            <img src="images/store/GamesPop1.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Red Dead Redemption 2</h5>
+                                <p class="card-text">44.99 USDT</p>
+                                <button
+                                    onclick="document.getElementById('red-dead').style.display='block'">Comprar</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="red-dead" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('red-dead').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesPop1.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Red Dead Redemption 2</h5>
+                                        <p class="card-text">Con más de 175 premios al Juego del año y más de 250
+                                            valoraciones perfectas, Red Dead Redemption 2 es una historia épica sobre el
+                                            honor y la lealtad en el umbral de una nueva era. Incluye Red Dead
+                                            Redemption 2: Modo Historia y Red Dead Online.</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-10').style.display='block'">Finalizar
+                                            compra</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-10" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-10').style.display='none'">&times;</span>
+                        <p>Compra finalizada gracias por la preferencia.</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 14rem;">
+                            <img src="images/store/GamesPop2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">EA Sport FC 24</h5>
+                                <p class="card-text">69.99 USDT</p><br>
+                                <button
+                                    onclick="document.getElementById('fc-24').style.display='block'">Comprar</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="fc-24" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('fc-24').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesPop2.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">EA Sport FC 24</h5>
+                                        <p class="card-text">EA SPORTS FC™ 24 te da la bienvenida a The World's Game: la
+                                            experiencia futbolística más fiel hasta la fecha con HyperMotionV,
+                                            PlayStyles optimizado por Opta y el motor mejorado de Frostbite™.</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-11').style.display='block'">Finalizar
+                                            compra</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-11" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-11').style.display='none'">&times;</span>
+                        <p>Compra finalizada gracias por la preferencia.</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 14rem;">
+                            <img src="images/store/GamesPop3.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Naraka: Bladepoint</h5>
+                                <p class="card-text">Gratis</p>
+                                <button
+                                    onclick="document.getElementById('naraka').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="naraka" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('naraka').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesPop3.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Naraka: Bladepoint</h5>
+                                        <p class="card-text">Adéntrate en las leyendas del Lejano Oriente en NARAKA:
+                                            BLADEPOINT. Juega en equipo con amigos en trepidantes combates cuerpo a
+                                            cuerpo y disfruta de una incomparable experiencia Battle Royale.</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-12').style.display='block'">Descargar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-12" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-12').style.display='none'">&times;</span>
+                        <p>Comenzando descarga...</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 14rem;">
+                            <img src="images/store/GamesPop4.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Among Us</h5>
+                                <p class="card-text">Gratis</p><br>
+                                <button
+                                    onclick="document.getElementById('among-us').style.display='block'">Información</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="among-us" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('among-us').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesPop4.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Among Us</h5>
+                                        <p class="card-text">Un juego para 4 a 15 jugadores en línea o en modo local
+                                            mediante wifi en el que debéis preparar vuestra nave espacial para el
+                                            despegue. Pero, cuidado: ¡uno o más jugadores elegidos al azar entre la
+                                            tripulación son impostores dispuestos a matar al resto!</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-13').style.display='block'">Descargar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-13" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-13').style.display='none'">&times;</span>
+                        <p>Comenzando descarga...</p>
+                    </div>
+                    <td>
+                        <div class="card" style="width: 14rem;">
+                            <img src="images/store/GamesPop5.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Bloons TD 6</h5>
+                                <p class="card-text">8.99 USDT</p><br>
+                                <button
+                                    onclick="document.getElementById('blons-td').style.display='block'">Comprar</button>
+                            </div>
+                        </div>
+                    </td>
+                    <div id="blons-td" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('blons-td').style.display='none'">&times;</span>
+                        <div class="card mb-3" style="max-width: 800px;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="images/store/GamesPop5.jpg" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Bloons TD 6</h5>
+                                        <p class="card-text">El exitoso juego de defensa de torres</p>
+                                        <button
+                                            onclick="document.getElementById('finalizar-compra-14').style.display='block'">Finalizar
+                                            compra</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="finalizar-compra-14" class="popup">
+                        <span class="close"
+                            onclick="document.getElementById('finalizar-compra-14').style.display='none'">&times;</span>
+                        <p>Compra finalizada gracias por la preferencia.</p>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            function solve() {
+                const games = {
+                    "sk": "Skull and bones",
+                    "fo": "Fortnite",
+                    "bla": "Black Myth: Wukong",
+                    "ni": "Nightingale",
+                    "ro": "Rocket League",
+                    "th": "The Wolf Among Us 2",
+                    "gr": "Grand Theft Auto V",
+                    "va": "Valorant",
+                    "fr": "Frostpunk 2",
+                    "al": "Alan Wake 2",
+                    "ge": "Genshin Impact",
+                    "ho": "Homeworld 3",
+                    "re": "Red Dead Redemption 2",
+                    "ea": "EA Sport FC 24",
+                    "na": "Naraka: Bladepoint",
+                    "am": "Among Us",
+                    "blo": "Bloons TD 6"
+                };
+
+                const x = document.getElementById('gameCode').value.toLowerCase();
+                let res = "";
+
+                const a = x[0];
+                const b = x[1];
+
+                if (x.length < 3) {
+                    res += a + b;
+                } else {
+                    if (a == 'b' && b == 'l') {
+                        const c = x[2];
+                        res += a + b + c;
+                    } else {
+                        res += a + b;
+                    }
+                }
+
+                for (let [key, value] of Object.entries(games)) {
+                    if (res == key) {
+                        alert("Quizás quisiste decir " + value + ". Este juego si se encuentra disponible");
+                        return;
+                    }
+                }
+
+                alert("No existe el juego en la tienda");
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+    </main>
+    <footer>
+        <p>&copy; 2024 Shadow Corp. Todos los derechos reservados.</p>
+        <!--
+            Do you know who did?
+        -->
+    </footer>
+</body>
+
+</html>
