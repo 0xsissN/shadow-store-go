@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form action="/login" method="POST">
+        <input type="text" name="user-email-shadow" id="user-email-shadow" placeholder="Username / Email" required>
+        <input type="password" name="password-shadow" id="password-shadow" placeholder="Password" required>
+        <input type="submit" value="Continue">
+    </form>
+
+    {{if .message}}
+        <h1>{{.message}}</h1>
+    {{end}}
+</body>
+</html>
