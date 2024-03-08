@@ -30,6 +30,7 @@ func main() {
 	server.POST("/login", postLogin)
 	server.GET("/register", getRegister)
 	server.POST("/register", postRegister)
+	server.GET("/emailverification/:username/:verpass", getEmail)
 
 	err := server.Run(":8081")
 	if err != nil {
@@ -122,4 +123,52 @@ func postRegister(c *gin.Context) {
 		c.HTML(http.StatusBadRequest, "register.html", gin.H{"message": err})
 		return
 	}
+
+	err = u.validateEmail()
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "register.html", gin.H{"message": err})
+		return
+	}
+
+	user_exist := u.comprobationUser()
+	if user_exist {
+		c.HTML(http.StatusBadRequest, "register.html", gin.H{"message": err})
+		return
+	}
+
+	err = u.createNewUser()
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "register.html", gin.H{"message": "Error to create new account, try again"})
+		return
+	}
+
+	c.HTML(http.StatusOK, "succ-register.html", nil)
+}
+
+func getEmail(c *gin.Context) {
+	var u User
+	var err error
+
+	username := c.Param("username")
+	verPass := c.Param("verpass")
+
+	err = u.userInDatabase(username)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "succ-register.html", gin.H{"message": err})
+		return
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(u.VER_PASS), []byte(verPass))
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "succ-register.html", gin.H{"message": err})
+		return
+	}
+
+	err = u.makeActive()
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "succ-register.html", gin.H{"message": err})
+		return
+	}
+
+	c.HTML(http.StatusOK, "acc-user.html", nil)
 }
