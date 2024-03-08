@@ -24,8 +24,14 @@ func init() {
 func main() {
 	server := gin.Default()
 	server.LoadHTMLGlob("templates/*/*/*.html")
+	server.Static("/store/images", "./public/store/images")
 
 	server.GET("/", getIndex)
+	server.GET("/games", gamesStore)
+	server.GET("/news", newsStore)
+	server.GET("/events", eventsStore)
+	server.GET("/about", aboutStore)
+
 	server.GET("/login", getLogin)
 	server.POST("/login", postLogin)
 	server.GET("/register", getRegister)
@@ -56,6 +62,22 @@ func disposableDomains() (dispDomains []string) {
 
 func getIndex(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", nil)
+}
+
+func gamesStore(c *gin.Context) {
+	c.HTML(http.StatusOK, "store.html", nil)
+}
+
+func newsStore(c *gin.Context) {
+	c.HTML(http.StatusOK, "news.html", nil)
+}
+
+func eventsStore(c *gin.Context) {
+	c.HTML(http.StatusOK, "events.html", nil)
+}
+
+func aboutStore(c *gin.Context) {
+	c.HTML(http.StatusOK, "about.html", nil)
 }
 
 func getLogin(c *gin.Context) {
