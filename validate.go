@@ -22,24 +22,24 @@ func (u *User) userInDatabase(user_shadow string) error {
 	}
 
 	if option {
-		query := "SELECT FROM * users WHERE email = ?"
+		query := "SELECT * FROM users WHERE email = ?"
+
 		row := db.QueryRow(query, user_shadow)
 		err := row.Scan(&u.ID, &u.USERNAME, &u.EMAIL, &u.HASH_PASS, &u.CREATED_AT, &u.ACTIVATE, &u.VER_PASS, &u.TIMEOUT)
 		if err != nil {
 			return err
 		}
-
-		return nil
 	} else {
-		query := "SELECT FROM * users WHERE username = ?"
+		query := "SELECT * FROM users WHERE username = ?"
+
 		row := db.QueryRow(query, user_shadow)
 		err := row.Scan(&u.ID, &u.USERNAME, &u.EMAIL, &u.HASH_PASS, &u.CREATED_AT, &u.ACTIVATE, &u.VER_PASS, &u.TIMEOUT)
 		if err != nil {
 			return err
 		}
-
-		return nil
 	}
+
+	return nil
 }
 
 func (u *User) comprobationPassword(password_b string) error {
@@ -141,6 +141,12 @@ func (u *User) createNewUser() error {
 		return err
 	}
 
+	var prepareData *sql.Stmt
+	prepareData, err = tx.Prepare("INSERT INTO users (username, email, hash_pass, created_at, activate, ver_pass, timeout_user) VALUES (?,?,?,?,?,?,?)")
+	if err != nil {
+		return err
+	}
+
 	defer func() {
 		if err != nil {
 			if rollbackErr := tx.Rollback(); rollbackErr != nil {
@@ -152,12 +158,6 @@ func (u *User) createNewUser() error {
 
 		err = tx.Commit()
 	}()
-
-	var prepareData *sql.Stmt
-	prepareData, err = tx.Prepare("INSERT INTO users (username, email, hash_pass, created_at, activate, ver_pass, timeout_user) VALUES(?,?,?,?,?,?,?)")
-	if err != nil {
-		return err
-	}
 
 	var execData sql.Result
 	execData, err = prepareData.Exec(u.USERNAME, u.EMAIL, hashPass, createdAt, 0, u.VER_PASS, timeout)
@@ -195,7 +195,7 @@ func (u *User) createNewUser() error {
 
 func (u *User) makeActive() error {
 	var err error
-	query, err := db.Prepare("UPDATE users SET active = true WHERE id = ?")
+	query, err := db.Prepare("UPDATE users SET activate = true WHERE id = ?")
 	if err != nil {
 		return err
 	}

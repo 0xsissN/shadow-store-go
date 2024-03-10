@@ -8,9 +8,9 @@ func (u *User) sendEmail(htmlContent, subject, to string) error {
 	mail.SetHeader("To", to)
 	mail.SetHeader("Subject", subject)
 
-	mail.SetBody("text,html", htmlContent)
+	mail.SetBody("text/html", htmlContent)
 
-	deal := gomail.NewDialer("stmp.gmail.com", 587, MailSend, MailPassSend)
+	deal := gomail.NewDialer("smtp.gmail.com", 587, MailSend, MailPassSend)
 	if err := deal.DialAndSend(mail); err != nil {
 		return err
 	}

@@ -26,6 +26,21 @@
             margin-bottom: 20px;
         }
 
+        button {
+            background-color: #73a7a7;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 20px;
+            box-sizing: border-box;
+        }
+
+        button:hover{
+            background-color: #4a7f7f;
+        }
+
         .bloque {
             background-color: #174d4d;
             border-radius: 8px;
@@ -70,6 +85,7 @@
             <input type="text" name="user-email-shadow" id="user-email-shadow" placeholder="Username / Email" required><br><br>
             <input type="password" name="password-shadow" id="password-shadow" placeholder="Password" required><br><br>
             <input type="submit" value="Continue">
+            <button onclick="redirectToRegister()">Sign Up</button>
         </form>
     </div>
     
@@ -78,5 +94,11 @@
             <h3>{{.message}}</h3>
         {{end}}
     </div>
+
+    <script>
+        function redirectToRegister() {
+            window.location.href = "/register"
+        }
+    </script>
 </body>
 </html>
