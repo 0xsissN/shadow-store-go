@@ -24,7 +24,7 @@ func init() {
 func main() {
 	server := gin.Default()
 	server.LoadHTMLGlob("templates/*/*/*.html")
-	server.Static("/store/images", "./public/store/images")
+	server.Static("/store/images", "./public/store/images/*")
 
 	server.GET("/", getIndex)
 	server.GET("/games", gamesStore)
