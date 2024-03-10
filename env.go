@@ -6,6 +6,6 @@ var (
 	MySqlAddress = "localhost"
 	MySqlPort    = "3306"
 	MySqlDB      = "shadowstoredb"
-	MailSend     = "codetest09ac@gmail.com"
-	MailPassSend = "ztdvpypaysmutfiw"
+	MailSend     = ""
+	MailPassSend = ""
 )
