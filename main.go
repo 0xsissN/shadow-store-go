@@ -26,6 +26,7 @@ func main() {
 	server.LoadHTMLGlob("templates/*/*/*.html")
 	server.Static("/public/store/images", "./templates/public/store/images")
 	server.Static("/public/store/css", "./templates/public/store/css")
+	server.Static("/private/profile-user/css", "./templates/private/profile-user/css")
 
 	server.GET("/", getIndex)
 	server.GET("/games", gamesStore)
@@ -42,6 +43,12 @@ func main() {
 	authUser := server.Group("/user", auth)
 	authUser.GET("/profile", getProfile)
 	authUser.GET("/logout", getLogOut)
+
+	authUser.GET("/uindex", getUIndex)
+	authUser.GET("/ustore", getUStore)
+	authUser.GET("/unews", getUNews)
+	authUser.GET("/uevents", getUEvents)
+	authUser.GET("/uabout", getUAbout)
 
 	err := server.Run(":8081")
 	if err != nil {
@@ -117,7 +124,7 @@ func postLogin(c *gin.Context) {
 	session.Values["userid"] = u.ID
 	session.Save(c.Request, c.Writer)
 
-	c.HTML(http.StatusOK, "succ-login.html", gin.H{"user": u.USERNAME})
+	c.HTML(http.StatusOK, "u-index.html", nil)
 }
 
 func getRegister(c *gin.Context) {
@@ -227,7 +234,7 @@ func getProfile(c *gin.Context) {
 		return
 	}
 
-	c.HTML(http.StatusOK, "profile.html", nil)
+	c.HTML(http.StatusOK, "profile.html", gin.H{"user": u})
 }
 
 func getLogOut(c *gin.Context) {
@@ -241,4 +248,49 @@ func getLogOut(c *gin.Context) {
 	session.Save(c.Request, c.Writer)
 
 	c.HTML(http.StatusOK, "index.html", nil)
+}
+
+func getUIndex(c *gin.Context) {
+	_, err := store.Get(c.Request, "session")
+	if err != nil {
+		return
+	}
+
+	c.HTML(http.StatusOK, "u-index.html", nil)
+}
+
+func getUStore(c *gin.Context) {
+	_, err := store.Get(c.Request, "session")
+	if err != nil {
+		return
+	}
+
+	c.HTML(http.StatusOK, "u-store.html", nil)
+}
+
+func getUNews(c *gin.Context) {
+	_, err := store.Get(c.Request, "session")
+	if err != nil {
+		return
+	}
+
+	c.HTML(http.StatusOK, "u-news.html", nil)
+}
+
+func getUEvents(c *gin.Context) {
+	_, err := store.Get(c.Request, "session")
+	if err != nil {
+		return
+	}
+
+	c.HTML(http.StatusOK, "u-events.html", nil)
+}
+
+func getUAbout(c *gin.Context) {
+	_, err := store.Get(c.Request, "session")
+	if err != nil {
+		return
+	}
+
+	c.HTML(http.StatusOK, "u-about.html", nil)
 }
