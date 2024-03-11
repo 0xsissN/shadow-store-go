@@ -208,3 +208,14 @@ func (u *User) makeActive() error {
 
 	return nil
 }
+
+func (u *User) comprobationId() error {
+	query := "SELECT * FROM users WHERE id = ?"
+	row := db.QueryRow(query, u.ID)
+	err := row.Scan(&u.ID, &u.USERNAME, &u.EMAIL, &u.HASH_PASS, &u.CREATED_AT, &u.ACTIVATE, &u.VER_PASS, &u.TIMEOUT)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

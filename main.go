@@ -24,7 +24,8 @@ func init() {
 func main() {
 	server := gin.Default()
 	server.LoadHTMLGlob("templates/*/*/*.html")
-	server.Static("/store/images", "./public/store/images/*")
+	server.Static("/public/store/images", "./templates/public/store/images")
+	server.Static("/public/store/css", "./templates/public/store/css")
 
 	server.GET("/", getIndex)
 	server.GET("/games", gamesStore)
@@ -37,6 +38,10 @@ func main() {
 	server.GET("/register", getRegister)
 	server.POST("/register", postRegister)
 	server.GET("/emailverification/:username/:verpass", getEmail)
+
+	authUser := server.Group("/user", auth)
+	authUser.GET("/profile", getProfile)
+	authUser.GET("/logout", getLogOut)
 
 	err := server.Run(":8081")
 	if err != nil {
@@ -193,4 +198,47 @@ func getEmail(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "acc-user.html", nil)
+}
+
+func getProfile(c *gin.Context) {
+	var err error
+	session, err := store.Get(c.Request, "session")
+	if err != nil {
+		return
+	}
+
+	if auth, ok := session.Values["authenticated"].(bool); !ok || !auth {
+		c.HTML(http.StatusForbidden, "login.html", nil)
+		return
+	}
+
+	var u User
+	var ok bool
+
+	u.ID, ok = session.Values["userid"].(string)
+	if !ok {
+		c.HTML(http.StatusForbidden, "login.html", nil)
+		return
+	}
+
+	err = u.comprobationId()
+	if err != nil {
+		c.HTML(http.StatusForbidden, "login.html", nil)
+		return
+	}
+
+	c.HTML(http.StatusOK, "profile.html", nil)
+}
+
+func getLogOut(c *gin.Context) {
+	session, err := store.Get(c.Request, "session")
+	if err != nil {
+		return
+	}
+
+	delete(session.Values, "authenticated")
+	delete(session.Values, "userid")
+	session.Save(c.Request, c.Writer)
+
+	c.HTML(http.StatusOK, "index.html", nil)
 }
