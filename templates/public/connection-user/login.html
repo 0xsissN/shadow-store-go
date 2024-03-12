@@ -30,8 +30,8 @@
             background-color: #73a7a7;
             border: none;
             color: white;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 6px;
+            border-radius: 5px;
             width: 100%;
             margin-top: 20px;
             box-sizing: border-box;
@@ -85,8 +85,9 @@
             <input type="text" name="user-email-shadow" id="user-email-shadow" placeholder="Username / Email" required><br><br>
             <input type="password" name="password-shadow" id="password-shadow" placeholder="Password" required><br><br>
             <input type="submit" value="Continue">
-            <button onclick="redirectToRegister()">Sign Up</button>
         </form>
+        <button onclick="redirectToChangePassword()">Forget Password</button>
+        <button onclick="redirectToRegister()">Sign Up</button>
     </div>
     
     <div class="bloque">
@@ -96,9 +97,16 @@
     </div>
 
     <script>
+        function redirectToChangePassword(){
+            window.location.href = "/"
+        }
+
+
         function redirectToRegister() {
             window.location.href = "/register"
         }
+
+
     </script>
 </body>
 </html>

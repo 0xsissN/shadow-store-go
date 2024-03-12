@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Acerca de Shadow</title>
-  <link rel="icon" href="/public/store/images/logo-main.png"/>
+  <link rel="icon" href="/public/store/images/logo-main.png" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
   <link rel="stylesheet" type="text/css" href="/public/store/css/style-about.css">
@@ -15,7 +15,7 @@
   <header>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
-        <img src="/public/store/images/logo-main.png" alt="" width="50px" class="logo">
+        <img src="/public/store/images/logo-main.png" alt width="50px" class="logo">
         <a class="navbar-brand" href="/user/uindex">Shadow Store</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,24 +23,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mb-2 mb-lg-0">
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/user/uindex">Store</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/user/ustore">Games</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/user/unews">News</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/user/uabout">About us</a>
-              </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/user/uindex">Store</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/user/ustore">Games</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/user/unews">News</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/user/uabout">About us</a>
+            </li>
           </ul>
-      </div>
+        </div>
         <div>
           <button class="button-user" onclick="redirectToProfile()">Profile</button>
-          <button class="button-user" onclick="redirectToLogout()">Log out</button>
-      </div>
+          <button class="button-user" onclick="redirectToLogout()">Log
+            out</button>
+        </div>
       </div>
     </nav>
   </header>
@@ -48,13 +49,14 @@
     <div class="parts-start">
       <div class="part">
         <h4>
-          <img src="/public/store/images/logo-main.png" alt="" width="100px" /> Shadow Store
+          <img src="/public/store/images/logo-main.png" alt width="100px" />
+          Shadow Store
         </h4>
         <p>Ahora se puede comprar videojuegos con criptomonedas</p>
       </div>
       <div class="part">
-        <a href="store.html"><img src="/public/store/images/store/GamesGta3.jpg" alt="" width="150px" /></a>
-        <a href="store.html"><img src="/public/store/images/store/GamesFrost11.jpg" alt="" width="150px" /></a>
+        <a href="store.html"><img src="/public/store/images/store/GamesGta3.jpg" alt width="150px" /></a>
+        <a href="store.html"><img src="/public/store/images/store/GamesFrost11.jpg" alt width="150px" /></a>
       </div>
     </div>
     <div id="parts-middle">
@@ -71,7 +73,7 @@
     </div>
     <div id="contact" class="popup">
       <span class="close" onclick="document.getElementById('contact').style.display='none'">&times;</span>
-      <form action="">
+      <form action>
         <input type="text" placeholder="Nombre" required /><br><br>
         <input type="text" placeholder="Email" required /><br><br>
         <input type="text" placeholder="País" required /><br><br>
@@ -109,14 +111,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
       integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
       crossorigin="anonymous"></script>
-      <script>
-        function redirectToProfile() {
-            window.location.href = "/user/profile"
-        }
+    <script>
+      function redirectToProfile() {
+        window.location.href = "/user/profile"
+      }
 
-        function redirectToLogout() {
-            window.location.href = "/user/logout"
-        }
+      function redirectToLogout() {
+        window.location.href = "/user/logout"
+      }
     </script>
   </main>
   <footer>

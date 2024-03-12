@@ -2,9 +2,12 @@ package main
 
 import (
 	"bufio"
+	"database/sql"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	emailverifier "github.com/AfterShip/email-verifier"
 	"github.com/gin-gonic/gin"
@@ -38,6 +41,10 @@ func main() {
 	server.GET("/register", getRegister)
 	server.POST("/register", postRegister)
 	server.GET("/emailverification/:username/:verpass", getEmail)
+	server.GET("/passwordrecovery", getRecoveryPassword)
+	server.POST("/passwordrecovery", postRecoveryPassword)
+	server.GET("/accountrecovery/:username/:verpass", getEmailRecovery)
+	server.POST("/accountchangepassword/:username/:verpass", postNewPassword)
 
 	authUser := server.Group("/user", auth)
 	authUser.GET("/profile", getProfile)
@@ -72,6 +79,12 @@ func disposableDomains() (dispDomains []string) {
 }
 
 func getIndex(c *gin.Context) {
+	session, err := store.Get(c.Request, "session")
+	if err == nil {
+		session.Options.MaxAge = -1
+		session.Save(c.Request, c.Writer)
+	}
+
 	c.HTML(http.StatusOK, "index.html", nil)
 }
 
@@ -236,6 +249,7 @@ func getLogOut(c *gin.Context) {
 
 	delete(session.Values, "authenticated")
 	delete(session.Values, "userid")
+	session.Options.MaxAge = -1
 	session.Save(c.Request, c.Writer)
 
 	c.Redirect(http.StatusSeeOther, "/")
@@ -319,4 +333,130 @@ func getUAbout(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "u-about.html", nil)
+}
+
+func getRecoveryPassword(c *gin.Context) {
+	c.HTML(http.StatusOK, "recovery.html", nil)
+}
+
+func postRecoveryPassword(c *gin.Context) {
+	var u User
+	var err error
+
+	user_shadow := c.PostForm("user-email")
+	err = u.userInDatabase(user_shadow)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Email dont exist, please create account"})
+		return
+	}
+
+	var verificationPass string
+	verificationPass, u.VER_PASS, err = u.newVerPass()
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Was unable to send recovery email, try again"})
+		return
+	}
+
+	timeout := time.Now().Add(2 * time.Hour)
+
+	var tx *sql.Tx
+	tx, err = db.Begin()
+	if err != nil {
+		return
+	}
+
+	defer func() {
+		if err != nil {
+			if rollbackErr := tx.Rollback(); rollbackErr != nil {
+				fmt.Println(rollbackErr)
+			}
+			c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Was unable to send recovery email, try again"})
+			return
+		}
+
+		err = tx.Commit()
+	}()
+
+	var updateData *sql.Stmt
+	updateData, err = tx.Prepare("UPDATE users SET ver_pass = ?, timeout_user = ? WHERE email = ?")
+	if err != nil {
+		return
+	}
+
+	var execData sql.Result
+	execData, err = updateData.Exec(u.VER_PASS, timeout, user_shadow)
+	if err != nil {
+		return
+	}
+
+	rowAff, err := execData.RowsAffected()
+	if rowAff == 0 {
+		return
+	}
+
+	subject := "Account Recovery"
+	htmlContent := fmt.Sprintf(`
+		<h1>Account recovery</h1>
+		<a href="http://localhost:8081/accountrecovery/%s/%s">Change Password</a>
+	`, user_shadow, verificationPass)
+
+	err = u.sendEmail(htmlContent, subject, user_shadow)
+	if err != nil {
+		if rollbackErr := tx.Rollback(); rollbackErr != nil {
+			fmt.Println(rollbackErr)
+		}
+
+		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Was unable to send recovery email, try again"})
+		return
+	}
+
+	if commitErr := tx.Commit(); commitErr != nil {
+		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Was unable to send recovery email, try again"})
+		return
+	}
+
+	c.HTML(http.StatusOK, "check-recovery.html", nil)
+}
+
+func getEmailRecovery(c *gin.Context) {
+	var u User
+	var err error
+
+	user_shadow := c.Param("username")
+	linkVerPass := c.Param("verpass")
+
+	err = u.userInDatabase(user_shadow)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "User don't exist, please create an account"})
+		return
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(u.VER_PASS), []byte(linkVerPass))
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Was unable to send recovery email, try again"})
+		return
+	}
+
+	currentTime := time.Now()
+	var timeout time.Time
+
+	timeout, err = time.Parse("2006-01-02 15:04:05.999999999", u.TIMEOUT)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Was unable to send recovery email, try again"})
+		return
+	}
+
+	if currentTime.After(timeout) {
+		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Was unable to send recovery email, try again"})
+		return
+	}
+
+	c.HTML(http.StatusOK, "email-change.html", gin.H{
+		"user":    u,
+		"verpass": linkVerPass,
+	})
+}
+
+func postNewPassword(c *gin.Context) {
+
 }

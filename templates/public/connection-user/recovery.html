@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recovery</title>
+</head>
+<body>
+    <form action="/passwordrecovery" method="POST">
+        <input type="text" name="user-email" id="user-email" placeholder="Email">
+        <input type="submit" value="Continue">
+    </form>
+    {{if .message}}
+        <h3>{{ .message }}</h3>
+    {{end}}
+</body>
+</html>

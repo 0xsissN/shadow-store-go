@@ -219,3 +219,23 @@ func (u *User) comprobationId() error {
 
 	return nil
 }
+
+func (u *User) newVerPass() (verPass, userVerPass string, err error) {
+	var alphabeticRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+	emailVerificationRune := make([]rune, 64)
+
+	for i := 0; i < 64; i++ {
+		emailVerificationRune[i] = alphabeticRunes[rand.Intn(len(alphabeticRunes)-1)]
+	}
+
+	generateVerHash := string(emailVerificationRune)
+
+	var newVerPass []byte
+	newVerPass, err = bcrypt.GenerateFromPassword([]byte(generateVerHash), bcrypt.DefaultCost)
+	if err != nil {
+		return generateVerHash, userVerPass, err
+	}
+
+	strNewVerPass := string(newVerPass)
+	return generateVerHash, strNewVerPass, nil
+}
