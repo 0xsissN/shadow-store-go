@@ -44,3 +44,33 @@ img.logo {
 .button-user:hover {
     background-color: #2f6e6e;
 }
+
+.user-bloque {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #03363d;
+    width: 50%; 
+    margin: 0 auto;
+    text-align: center;
+}
+
+#user-bloque h2 {
+    color: #fff;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#user-bloque h4 {
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+footer {
+    text-align: center;
+    color: #ffffff;
+    background-color: #03363d;
+    margin-top: 20px;
+    padding: 20px;
+}

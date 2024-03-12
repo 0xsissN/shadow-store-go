@@ -26,12 +26,11 @@ func main() {
 	server.LoadHTMLGlob("templates/*/*/*.html")
 	server.Static("/public/store/images", "./templates/public/store/images")
 	server.Static("/public/store/css", "./templates/public/store/css")
-	server.Static("/private/profile-user/css", "./templates/private/profile-user/css")
+	server.Static("/private/store-user/css", "./templates/private/store-user/css")
+	server.Static("/private/store-user/images", "./templates/private/store-user/images")
 
 	server.GET("/", getIndex)
 	server.GET("/games", gamesStore)
-	server.GET("/news", newsStore)
-	server.GET("/events", eventsStore)
 	server.GET("/about", aboutStore)
 
 	server.GET("/login", getLogin)
@@ -80,14 +79,6 @@ func gamesStore(c *gin.Context) {
 	c.HTML(http.StatusOK, "store.html", nil)
 }
 
-func newsStore(c *gin.Context) {
-	c.HTML(http.StatusOK, "news.html", nil)
-}
-
-func eventsStore(c *gin.Context) {
-	c.HTML(http.StatusOK, "events.html", nil)
-}
-
 func aboutStore(c *gin.Context) {
 	c.HTML(http.StatusOK, "about.html", nil)
 }
@@ -124,7 +115,7 @@ func postLogin(c *gin.Context) {
 	session.Values["userid"] = u.ID
 	session.Save(c.Request, c.Writer)
 
-	c.HTML(http.StatusOK, "u-index.html", nil)
+	c.Redirect(http.StatusSeeOther, "/user/uindex")
 }
 
 func getRegister(c *gin.Context) {
@@ -247,12 +238,19 @@ func getLogOut(c *gin.Context) {
 	delete(session.Values, "userid")
 	session.Save(c.Request, c.Writer)
 
-	c.HTML(http.StatusOK, "index.html", nil)
+	c.Redirect(http.StatusSeeOther, "/")
 }
 
 func getUIndex(c *gin.Context) {
-	_, err := store.Get(c.Request, "session")
+	session, err := store.Get(c.Request, "session")
 	if err != nil {
+		c.Redirect(http.StatusForbidden, "/")
+		return
+	}
+
+	auth, ok := session.Values["authenticated"].(bool)
+	if !ok || !auth {
+		c.Redirect(http.StatusForbidden, "/")
 		return
 	}
 
@@ -260,8 +258,15 @@ func getUIndex(c *gin.Context) {
 }
 
 func getUStore(c *gin.Context) {
-	_, err := store.Get(c.Request, "session")
+	session, err := store.Get(c.Request, "session")
 	if err != nil {
+		c.Redirect(http.StatusForbidden, "/")
+		return
+	}
+
+	auth, ok := session.Values["authenticated"].(bool)
+	if !ok || !auth {
+		c.Redirect(http.StatusForbidden, "/")
 		return
 	}
 
@@ -269,8 +274,15 @@ func getUStore(c *gin.Context) {
 }
 
 func getUNews(c *gin.Context) {
-	_, err := store.Get(c.Request, "session")
+	session, err := store.Get(c.Request, "session")
 	if err != nil {
+		c.Redirect(http.StatusForbidden, "/")
+		return
+	}
+
+	auth, ok := session.Values["authenticated"].(bool)
+	if !ok || !auth {
+		c.Redirect(http.StatusForbidden, "/")
 		return
 	}
 
@@ -278,8 +290,15 @@ func getUNews(c *gin.Context) {
 }
 
 func getUEvents(c *gin.Context) {
-	_, err := store.Get(c.Request, "session")
+	session, err := store.Get(c.Request, "session")
 	if err != nil {
+		c.Redirect(http.StatusForbidden, "/")
+		return
+	}
+
+	auth, ok := session.Values["authenticated"].(bool)
+	if !ok || !auth {
+		c.Redirect(http.StatusForbidden, "/")
 		return
 	}
 
@@ -287,8 +306,15 @@ func getUEvents(c *gin.Context) {
 }
 
 func getUAbout(c *gin.Context) {
-	_, err := store.Get(c.Request, "session")
+	session, err := store.Get(c.Request, "session")
 	if err != nil {
+		c.Redirect(http.StatusForbidden, "/")
+		return
+	}
+
+	auth, ok := session.Values["authenticated"].(bool)
+	if !ok || !auth {
+		c.Redirect(http.StatusForbidden, "/")
 		return
 	}
 

@@ -8,7 +8,7 @@
     <link rel="icon" href="/public/store/images/logo-main.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/public/store/css/style-events.css">
+    <link rel="stylesheet" type="text/css" href="/private/store-user/css/style-events.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <img src="/public/store/images/logo-main.png" alt="" width="50px" class="logo">
-                <a class="navbar-brand" href="/">Shadow Store</a>
+                <a class="navbar-brand" href="/user/uindex">Shadow Store</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -24,22 +24,22 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Store</a>
+                            <a class="nav-link active" aria-current="page" href="/user/uindex">Store</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/games">Games</a>
+                            <a class="nav-link active" aria-current="page" href="/user/ustore">Games</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/news">News</a>
+                            <a class="nav-link active" aria-current="page" href="/user/unews">News</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/about">About us</a>
+                            <a class="nav-link active" aria-current="page" href="/user/uabout">About us</a>
                         </li>
                     </ul>
                 </div>
                 <div>
-                    <button class="button-user" onclick="redirectToLogin()">Sign In</button>
-                    <button class="button-user" onclick="redirectToRegister()">Sign Up</button>
+                    <button class="button-user" onclick="redirectToProfile()">Profile</button>
+                    <button class="button-user" onclick="redirectToLogout()">Log out</button>
                 </div>
             </div>
         </nav>
@@ -49,8 +49,8 @@
             <aside id="news-aside">
                 <h5>Centro de noticias</h5>
                 <ul id="list-news">
-                    <li><a href="/news">Noticias</a></li>
-                    <li><a href="/events">Eventos</a></li>
+                    <li><a href="/user/unews">Noticias</a></li>
+                    <li><a href="/user/uevents">Eventos</a></li>
                 </ul>
             </aside>
         </div>
@@ -59,7 +59,7 @@
                 <tr>
                     <td>
                         <div class="card" style="width: 20rem;">
-                            <img src="/public/store/images/events/valorant.png" class="card-img-top" alt="...">
+                            <img src="/private/store-user/images/events/valorant.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">VCT 2024:Masters Madrid</h5>
                                 <p class="card-text">Marzo 14-24 2024 <br> Se celebrará en España-Madrid</p>
@@ -68,7 +68,7 @@
                     </td>
                     <td>
                         <div class="card" style="width: 20rem;">
-                            <img src="/public/store/images/events/lol.png" class="card-img-top" alt="...">
+                            <img src="/private/store-user/images/events/lol.png" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Mid-Season Invitational 2024
                                 </h5>
@@ -84,7 +84,7 @@
                     <div class="card mb-3" style="max-width: 800px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="/public/store/images/events/csgo.png" class="img-fluid rounded-start" alt="...">
+                                <img src="/private/store-user/images/events/csgo.png" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -99,7 +99,7 @@
                     <div class="card mb-3" style="max-width: 800px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="/public/store/images/events/mblg.png" class="img-fluid rounded-start" alt="...">
+                                <img src="/private/store-user/images/events/mblg.png" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -114,7 +114,7 @@
                     <div class="card mb-3" style="max-width: 800px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="/public/store/images/events/pubg.png" class="img-fluid rounded-start" alt="...">
+                                <img src="/private/store-user/images/events/pubg.png" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -131,7 +131,7 @@
                     <div class="card mb-3" style="max-width: 800px;">
                         <div class="row g-0">
                             <div class="col-md-4">
-                                <img src="/public/store/images/events/dota.png" class="img-fluid rounded-start" alt="...">
+                                <img src="/private/store-user/images/events/dota.png" class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
@@ -152,15 +152,15 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
             crossorigin="anonymous"></script>
-        <script>
-            function redirectToLogin() {
-                window.location.href = "/login"
-            }
-
-            function redirectToRegister() {
-                window.location.href = "/register"
-            }
-        </script>
+            <script>
+                function redirectToProfile() {
+                    window.location.href = "/user/profile"
+                }
+    
+                function redirectToLogout() {
+                    window.location.href = "/user/logout"
+                }
+            </script>
     </main>
     <footer>
         <p>&copy; 2024 Shadow Corp. Todos los derechos reservados.</p>
