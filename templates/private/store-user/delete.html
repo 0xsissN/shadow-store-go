@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recovery</title>
+    <title>Document</title>
     <style>
         body {
             margin: 0;
@@ -63,13 +63,14 @@
 </head>
 <body>
     <div id="bloque-1">
-        <h2>Recovery Password</h2>
+        <h2>Delete User</h2>
     </div>
     <div class="bloque">
-        <form action="/passwordrecovery" method="POST">
-            <input type="text" name="user-email" id="user-email" placeholder="Email">
+        <form action="/user/delete" method="POST">
+            <label for="delete-user">Enter CONFIRMED</label>
+            <input type="text" name="delete-user" id="delete-user" placeholder="CONFIRMED" required>
             <input type="submit" value="Continue">
-        </form>
+        </form>    
     </div>
     <div class="bloque">
         {{if .message}}

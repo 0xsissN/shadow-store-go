@@ -48,6 +48,10 @@ func main() {
 
 	authUser := server.Group("/user", auth)
 	authUser.GET("/profile", getProfile)
+	authUser.GET("/delete", getDelete)
+	authUser.POST("/delete", postDelete)
+	authUser.GET("/changepassword", getUserNewPassword)
+	authUser.POST("/changepassword", postUserNewPassword)
 	authUser.GET("/logout", getLogOut)
 
 	authUser.GET("/uindex", getUIndex)
@@ -398,7 +402,7 @@ func postRecoveryPassword(c *gin.Context) {
 	htmlContent := fmt.Sprintf(`
 		<h1>Account recovery</h1>
 		<a href="http://localhost:8081/accountrecovery/%s/%s">Change Password</a>
-	`, user_shadow, verificationPass)
+	`, u.USERNAME, verificationPass)
 
 	err = u.sendEmail(htmlContent, subject, user_shadow)
 	if err != nil {
@@ -451,12 +455,186 @@ func getEmailRecovery(c *gin.Context) {
 		return
 	}
 
-	c.HTML(http.StatusOK, "email-change.html", gin.H{
+	c.HTML(http.StatusOK, "new-password.html", gin.H{
 		"user":    u,
 		"verpass": linkVerPass,
 	})
 }
 
 func postNewPassword(c *gin.Context) {
+	var u User
+	var err error
 
+	user_shadow := c.Param("username")
+	linkVerPass := c.Param("verpass")
+
+	err = u.userInDatabase(user_shadow)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "new-password.html", gin.H{
+			"user":    u,
+			"verpass": linkVerPass,
+			"message": "user don't exist, please create an account",
+		})
+
+		return
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(u.VER_PASS), []byte(linkVerPass))
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "new-password.html", gin.H{
+			"user":    u,
+			"verpass": linkVerPass,
+			"message": "There was an issue updating password, try again",
+		})
+
+		return
+	}
+
+	pwd1 := c.PostForm("password-a")
+	pwd2 := c.PostForm("password-b")
+
+	if pwd1 != pwd2 {
+		c.HTML(http.StatusBadRequest, "new-password.html", gin.H{
+			"user":    u,
+			"verpass": linkVerPass,
+			"message": "Passwords dont match",
+		})
+
+		return
+	}
+
+	u.PASSWORD = pwd1
+	err = u.validatePassword()
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "new-password.html", gin.H{
+			"user":    u,
+			"verpass": linkVerPass,
+			"message": err,
+		})
+
+		return
+	}
+
+	var hash []byte
+	hash, err = bcrypt.GenerateFromPassword([]byte(pwd1), bcrypt.DefaultCost)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "new-password.html", gin.H{
+			"user":    u,
+			"verpass": linkVerPass,
+			"message": err,
+		})
+
+		return
+	}
+
+	u.HASH_PASS = string(hash)
+	err = u.updatePassword()
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "new-password.html", gin.H{
+			"user":    u,
+			"verpass": linkVerPass,
+			"message": err,
+		})
+
+		return
+	}
+
+	c.HTML(http.StatusOK, "login.html", gin.H{"message": "password succesfully updated, please login"})
+}
+
+func getDelete(c *gin.Context) {
+	c.HTML(http.StatusOK, "delete.html", nil)
+}
+
+func postDelete(c *gin.Context) {
+	var u User
+	var err error
+
+	session, err := store.Get(c.Request, "session")
+	if err != nil {
+		return
+	}
+
+	u.ID = session.Values["userid"].(string)
+
+	err = u.comprobationId()
+	if err != nil {
+		c.HTML(http.StatusUnauthorized, "delete.html", gin.H{"message": err})
+		return
+	}
+
+	key := c.PostForm("delete-user")
+
+	if key != "CONFIRMED" {
+		c.HTML(http.StatusBadRequest, "delete.html", gin.H{"message": "Enter CONFIRMED"})
+		return
+	}
+
+	err = u.deleteUser()
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "delete.html", gin.H{"message": "Error when deleting account"})
+		return
+	}
+
+	c.Redirect(http.StatusSeeOther, "/")
+}
+
+func getUserNewPassword(c *gin.Context) {
+	c.HTML(http.StatusOK, "u-password.html", nil)
+}
+
+func postUserNewPassword(c *gin.Context) {
+	var u User
+	var err error
+
+	session, err := store.Get(c.Request, "session")
+	if err != nil {
+		return
+	}
+
+	u.ID = session.Values["userid"].(string)
+
+	err = u.comprobationId()
+	if err != nil {
+		c.HTML(http.StatusUnauthorized, "u-password.html", gin.H{"message": err})
+		return
+	}
+
+	old_password := c.PostForm("old-password")
+	password_a := c.PostForm("password-a")
+	password_b := c.PostForm("password-b")
+
+	if password_a != password_b {
+		c.HTML(http.StatusBadRequest, "u-password.html", gin.H{"message": "Password dont match"})
+		return
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(u.HASH_PASS), []byte(old_password))
+	if err != nil {
+		c.HTML(http.StatusUnauthorized, "u-password.html", gin.H{"message": "Old password doesnt match"})
+		return
+	}
+
+	u.PASSWORD = password_a
+	err = u.validatePassword()
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "u-password.html", gin.H{"message": err})
+		return
+	}
+
+	var hash []byte
+	hash, err = bcrypt.GenerateFromPassword([]byte(password_a), bcrypt.DefaultCost)
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "u-password.html", gin.H{"message": "there was an issue changing password"})
+		return
+	}
+
+	u.HASH_PASS = string(hash)
+	err = u.updatePassword()
+	if err != nil {
+		c.HTML(http.StatusInternalServerError, "u-password.html", gin.H{"message": "there was an issue changing password"})
+		return
+	}
+
+	c.Redirect(http.StatusSeeOther, "/login")
 }

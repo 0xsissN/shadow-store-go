@@ -239,3 +239,33 @@ func (u *User) newVerPass() (verPass, userVerPass string, err error) {
 	strNewVerPass := string(newVerPass)
 	return generateVerHash, strNewVerPass, nil
 }
+
+func (u *User) updatePassword() error {
+	query, err := db.Prepare("UPDATE users SET hash_pass = ? WHERE id = ?")
+	if err != nil {
+		return err
+	}
+
+	defer query.Close()
+
+	_, err = query.Exec(u.HASH_PASS, u.ID)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (u *User) deleteUser() error {
+	query, err := db.Prepare("DELETE FROM users WHERE id = ?")
+	if err != nil {
+		return err
+	}
+
+	_, err = query.Exec(u.ID)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

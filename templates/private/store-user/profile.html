@@ -50,6 +50,10 @@
             <h4>Username: {{ .user.USERNAME }}</h4>
             <h4>Email: {{ .user.EMAIL }}</h4>
         </div>
+        <div class="user-bloque">
+            <button class="button-user" onclick="redirectToDelete()">Delete Account</button>
+            <button class="button-user" onclick="redirectToRecovery()">Recovery Password</button>
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
             integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
             crossorigin="anonymous"></script>
@@ -59,6 +63,14 @@
         <script>
             function redirectToProfile() {
                 window.location.href = "/user/profile"
+            }
+
+            function redirectToDelete(){
+                window.location.href = "/user/delete"
+            }
+
+            function redirectToRecovery() {
+                window.location.href = ""
             }
 
             function redirectToLogout() {
