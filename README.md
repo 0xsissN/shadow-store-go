@@ -33,6 +33,7 @@ This project aims to show the appearance of an online video game store and inclu
 
 - When you log in, a cookie is created and when you log out, the cookie is deleted.
 - User authentication prevents duplicate emails or usernames during registration.
+- If you try to enter a user page, it asks you to authenticate first.
 
 ## Installation
 
