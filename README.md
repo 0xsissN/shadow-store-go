@@ -57,9 +57,9 @@ go get -u github.com/AfterShip/email-verifier
 ```
 go get -u github.com/wagslane/go-password-validator
 ```
-
-4. If CSS or images fail to load, adjust the server's static file path.
-5. Execute the SQL script in a database.
+3. If CSS or images fail to load, adjust the server's static file path.
+4. Execute the SQL script in a database.
+5. Configure the env.go file
 6. Run the project and enjoy!
 ```
 go run . 
