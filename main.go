@@ -174,7 +174,7 @@ func postRegister(c *gin.Context) {
 
 	user_exist := u.comprobationUser()
 	if user_exist {
-		c.HTML(http.StatusBadRequest, "register.html", gin.H{"message": err})
+		c.HTML(http.StatusBadRequest, "register.html", gin.H{"message": "User already exist"})
 		return
 	}
 
@@ -350,7 +350,7 @@ func postRecoveryPassword(c *gin.Context) {
 	user_shadow := c.PostForm("user-email")
 	err = u.userInDatabase(user_shadow)
 	if err != nil {
-		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Email dont exist, please create account"})
+		c.HTML(http.StatusBadRequest, "recovery.html", gin.H{"message": "Email dont exist, please create an account"})
 		return
 	}
 
@@ -638,3 +638,5 @@ func postUserNewPassword(c *gin.Context) {
 
 	c.Redirect(http.StatusSeeOther, "/login")
 }
+
+/* ----- Do you know who did? ----- */

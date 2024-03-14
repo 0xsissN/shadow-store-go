@@ -14,3 +14,4 @@ CREATE TABLE users (
     UNIQUE KEY id_UNIQUE(id),
     UNIQUE KEY username_UNIQUE(username) 
 );
+

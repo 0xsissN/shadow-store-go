@@ -94,8 +94,8 @@ func (u *User) validateEmail() error {
 
 func (u *User) comprobationUser() bool {
 	exist := true
-	query := "SELECT id FROM users WHERE username = ?"
-	row := db.QueryRow(query, u.USERNAME)
+	query := "SELECT id FROM users WHERE username = ? or email = ?"
+	row := db.QueryRow(query, u.USERNAME, u.EMAIL)
 
 	err := row.Scan(&u.ID)
 	if err == sql.ErrNoRows {
@@ -269,3 +269,5 @@ func (u *User) deleteUser() error {
 
 	return nil
 }
+
+/* ----- Do you know who did? ----- */
