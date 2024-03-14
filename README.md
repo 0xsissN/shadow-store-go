@@ -31,9 +31,8 @@ This project aims to show the appearance of an online video game store and inclu
 
 ## Testing
 
-- Upon logging in, a cookie is created. Logging out removes the cookie.
+- When you log in, a cookie is created and when you log out, the cookie is deleted.
 - User authentication prevents duplicate emails or usernames during registration.
-- The server runs on `localhost:8081`.
 
 ## Installation
 
