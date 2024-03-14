@@ -61,5 +61,8 @@ go get -u github.com/wagslane/go-password-validator
 4. If CSS or images fail to load, adjust the server's static file path.
 5. Execute the SQL script in a database.
 6. Run the project and enjoy!
+```
+go run . 
+```
 
 **Note:** Make sure to handle environment-specific configurations appropriately.
