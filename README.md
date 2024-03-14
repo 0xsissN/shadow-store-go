@@ -1,6 +1,6 @@
 # Video Game Shadow Store
 
-This project aims to showcase the appearance of a web-based video game store and includes user functionality.
+This project aims to show the appearance of an online video game store and includes functionalities for the user.
 
 ## Features
 
