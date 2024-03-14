@@ -39,8 +39,27 @@ This project aims to showcase the appearance of a web-based video game store and
 
 1. Ensure Go is installed.
 2. Install required packages: Gin, MySQL, Gomail, Gorilla session, Email verifier, Password validator.
-3. If CSS or images fail to load, adjust the server's static file path.
-4. Execute the SQL script in a database.
-5. Run the project and enjoy!
+```
+go get github.com/gin-gonic/gin
+```
+```
+go get github.com/go-sql-driver/mysql
+```
+```
+go get gopkg.in/gomail.v2
+```
+```
+go get github.com/gorilla/sessions
+```
+```
+go get -u github.com/AfterShip/email-verifier
+```
+```
+go get -u github.com/wagslane/go-password-validator
+```
+
+4. If CSS or images fail to load, adjust the server's static file path.
+5. Execute the SQL script in a database.
+6. Run the project and enjoy!
 
 **Note:** Make sure to handle environment-specific configurations appropriately.
