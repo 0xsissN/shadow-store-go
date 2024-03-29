@@ -1,6 +1,6 @@
-# Video Game Store
+# Video Game Shadow Store
 
-This project aims to showcase the appearance of a web-based video game store and includes user registration functionality.
+This project aims to show the appearance of an online video game store and includes functionalities for the user.
 
 ## Features
 
@@ -17,8 +17,8 @@ This project aims to showcase the appearance of a web-based video game store and
 - **HTML:** Page structure.
 - **Go:** Backend development using Gin framework and various Go packages including `bcrypt`, `gomail`, `mysql`, `gorilla session`, `github.com/AfterShip/email-verifier`, and `github.com/wagslane/go-password-validator`.
 - **CSS and Bootstrap:** Styling and layout enhancement, including cards and carousel.
-- **JavaScript:** Functionality for game search feature.
 - **SQL:** Database queries for backend operations.
+- **JavaScript:** Functionality for game search feature.
 
 ## Backend Functionality
 
@@ -31,9 +31,9 @@ This project aims to showcase the appearance of a web-based video game store and
 
 ## Testing
 
-- Upon logging in, a cookie is created. Logging out removes the cookie.
+- When you log in, a cookie is created and when you log out, the cookie is deleted.
 - User authentication prevents duplicate emails or usernames during registration.
-- The server runs on `localhost:8081`.
+- If you try to enter a user page, it asks you to authenticate first.
 
 ## Installation
 
