@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,7 @@
             flex-direction: column;
         }
 
-        #bloque-1{
+        #bloque-1 {
             background-color: #174d4d;
             color: #fff;
             text-align: center;
@@ -38,7 +39,7 @@
             box-sizing: border-box;
         }
 
-        button:hover{
+        button:hover {
             background-color: #4a7f7f;
         }
 
@@ -47,7 +48,7 @@
             border-radius: 8px;
             padding: 20px;
             width: 300px;
-            margin-bottom: 20px;            
+            margin-bottom: 20px;
         }
 
         input[type="text"],
@@ -76,6 +77,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="bloque-1">
         <h2>Login account</h2>
@@ -83,22 +85,23 @@
 
     <div class="bloque">
         <form action="/login" method="POST">
-            <input type="text" name="user-email-shadow" id="user-email-shadow" placeholder="Username / Email" required><br><br>
+            <input type="text" name="user-email-shadow" id="user-email-shadow" placeholder="Username / Email"
+                required><br><br>
             <input type="password" name="password-shadow" id="password-shadow" placeholder="Password" required><br><br>
             <input type="submit" value="Continue">
         </form>
         <button onclick="redirectToChangePassword()">Forget Password</button>
         <button onclick="redirectToRegister()">Sign Up</button>
     </div>
-    
+
     <div class="bloque">
         {{if .message}}
-            <h3>{{.message}}</h3>
+        <h3>{{.message}}</h3>
         {{end}}
     </div>
 
     <script>
-        function redirectToChangePassword(){
+        function redirectToChangePassword() {
             window.location.href = "/passwordrecovery"
         }
 
@@ -107,4 +110,5 @@
         }
     </script>
 </body>
+
 </html>

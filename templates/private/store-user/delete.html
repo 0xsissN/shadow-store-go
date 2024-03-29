@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +19,7 @@
             flex-direction: column;
         }
 
-        #bloque-1{
+        #bloque-1 {
             background-color: #174d4d;
             color: #fff;
             text-align: center;
@@ -45,23 +46,24 @@
             box-sizing: border-box;
             margin-bottom: 10px;
         }
-    
+
         input[type="submit"] {
             background-color: #73a7a7;
             color: #fff;
             cursor: pointer;
         }
-    
+
         input[type="submit"]:hover {
             background-color: #4a7f7f;
         }
-    
+
         h3 {
             color: #fff;
             text-align: center;
         }
     </style>
 </head>
+
 <body>
     <div id="bloque-1">
         <h2>Delete User</h2>
@@ -70,12 +72,13 @@
         <form action="/user/delete" method="POST">
             <input type="text" name="delete-user" id="delete-user" placeholder="CONFIRMED" required>
             <input type="submit" value="Continue">
-        </form>    
+        </form>
     </div>
     <div class="bloque">
         {{if .message}}
-            <h3>{{ .message }}</h3>
+        <h3>{{ .message }}</h3>
         {{end}}
     </div>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,22 +12,25 @@
             background-color: #73a7a7;
             color: #fff;
         }
-        h1{
+
+        h1 {
             background-color: #174d4d;
             padding: 20px;
         }
 
-        h2{
+        h2 {
             background-color: #174d4d;
             padding: 10px;
         }
     </style>
 </head>
+
 <body>
     <h1>Verify your email</h1>
 
     {{if .message}}
-        <h2>{{.message}}</h2>
+    <h2>{{.message}}</h2>
     {{end}}
 </body>
+
 </html>

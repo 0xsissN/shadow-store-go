@@ -30,11 +30,8 @@ func main() {
 	server.Static("/public/store/images", "./templates/public/store/images")
 	server.Static("/public/store/css", "./templates/public/store/css")
 	server.Static("/private/store-user/css", "./templates/private/store-user/css")
-	server.Static("/private/store-user/images", "./templates/private/store-user/images")
 
 	server.GET("/", getIndex)
-	server.GET("/games", gamesStore)
-	server.GET("/about", aboutStore)
 
 	server.GET("/login", getLogin)
 	server.POST("/login", postLogin)
@@ -56,8 +53,6 @@ func main() {
 
 	authUser.GET("/uindex", getUIndex)
 	authUser.GET("/ustore", getUStore)
-	authUser.GET("/unews", getUNews)
-	authUser.GET("/uevents", getUEvents)
 	authUser.GET("/uabout", getUAbout)
 
 	err := server.Run(":8081")
@@ -90,14 +85,6 @@ func getIndex(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "index.html", nil)
-}
-
-func gamesStore(c *gin.Context) {
-	c.HTML(http.StatusOK, "store.html", nil)
-}
-
-func aboutStore(c *gin.Context) {
-	c.HTML(http.StatusOK, "about.html", nil)
 }
 
 func getLogin(c *gin.Context) {
@@ -289,38 +276,6 @@ func getUStore(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "u-store.html", nil)
-}
-
-func getUNews(c *gin.Context) {
-	session, err := store.Get(c.Request, "session")
-	if err != nil {
-		c.Redirect(http.StatusForbidden, "/")
-		return
-	}
-
-	auth, ok := session.Values["authenticated"].(bool)
-	if !ok || !auth {
-		c.Redirect(http.StatusForbidden, "/")
-		return
-	}
-
-	c.HTML(http.StatusOK, "u-news.html", nil)
-}
-
-func getUEvents(c *gin.Context) {
-	session, err := store.Get(c.Request, "session")
-	if err != nil {
-		c.Redirect(http.StatusForbidden, "/")
-		return
-	}
-
-	auth, ok := session.Values["authenticated"].(bool)
-	if !ok || !auth {
-		c.Redirect(http.StatusForbidden, "/")
-		return
-	}
-
-	c.HTML(http.StatusOK, "u-events.html", nil)
 }
 
 func getUAbout(c *gin.Context) {
