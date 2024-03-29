@@ -36,7 +36,11 @@ This project aims to show the appearance of an online video game store and inclu
 ## Installation
 
 1. Ensure Go is installed.
-2. Install required packages: Gin, MySQL, Gomail, Gorilla session, Email verifier, Password validator.
+2. Git clone the repository
+```
+git clone https://github.com/0xsissN/shadow-store-go.git
+```
+3. Install required packages: Gin, MySQL, Gomail, Gorilla session, Email verifier, Password validator.
 ```
 go get github.com/gin-gonic/gin
 ```
@@ -55,10 +59,10 @@ go get -u github.com/AfterShip/email-verifier
 ```
 go get -u github.com/wagslane/go-password-validator
 ```
-3. If CSS or images fail to load, adjust the server's static file path.
-4. Execute the SQL script in a database.
-5. Configure the env.go file
-6. Run the project and enjoy!
+4. If CSS or images fail to load, adjust the server's static file path.
+5. Execute the SQL script in a database.
+6. Configure the env.go file
+7. Run the project and enjoy!
 ```
 go run . 
 ```
