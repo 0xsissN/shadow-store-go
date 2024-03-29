@@ -6,7 +6,7 @@ This project aims to show the appearance of an online video game store and inclu
 
 - **Homepage:** Display of main page.
 - **Games:** Browse and view available games.
-- **About Us:** Description of the store and its mission.
+- **About Us:** Store features.
 - **User Authentication:** Ability to log in, register, view profile, and log out.
 - **Profile Management:** Users can manage their accounts, including password change and account deletion.
 
