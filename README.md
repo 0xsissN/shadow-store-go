@@ -21,7 +21,7 @@ This project aims to show the appearance of an online video game store and inclu
 ## Backend Functionality
 
 - **Login and Registration:** Passwords are hashed for security. Email verification is sent upon registration.
-- **User Middleware:** Certain features (e.g., viewing events, news, profile, and log out) are accessible only when logged in.
+- **User Middleware:** Certain features (e.g., view profile, delete account, change password, log out) are accessible only when logged in.
 - **Profile Management:** Includes account deletion and password change functionality.
 - **Data Validation:** Functions for validating user inputs.
 - **SQL Queries:** Database interactions for storing and retrieving data.
