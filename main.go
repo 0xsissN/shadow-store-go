@@ -29,6 +29,7 @@ func main() {
 	server.LoadHTMLGlob("templates/*/*/*.html")
 	server.Static("/public/store/images", "./templates/public/store/images")
 	server.Static("/public/store/css", "./templates/public/store/css")
+	server.Static("/public/connection-user/css", "./templates/public/connection-user/css")
 	server.Static("/private/store-user/css", "./templates/private/store-user/css")
 
 	server.GET("/", getIndex)
