@@ -6,9 +6,7 @@ This project aims to show the appearance of an online video game store and inclu
 
 - **Homepage:** Display of main page.
 - **Games:** Browse and view available games.
-- **News:** Read the latest news related to video games.
-- **Events:** Information about upcoming gaming events.
-- **About Us:** Description of the store and its mission.
+- **About Us:** Store features.
 - **User Authentication:** Ability to log in, register, view profile, and log out.
 - **Profile Management:** Users can manage their accounts, including password change and account deletion.
 
@@ -23,7 +21,7 @@ This project aims to show the appearance of an online video game store and inclu
 ## Backend Functionality
 
 - **Login and Registration:** Passwords are hashed for security. Email verification is sent upon registration.
-- **User Middleware:** Certain features (e.g., viewing events, news, profile, and log out) are accessible only when logged in.
+- **User Middleware:** Certain features (e.g., view profile, delete account, change password, log out) are accessible only when logged in.
 - **Profile Management:** Includes account deletion and password change functionality.
 - **Data Validation:** Functions for validating user inputs.
 - **SQL Queries:** Database interactions for storing and retrieving data.
@@ -38,7 +36,11 @@ This project aims to show the appearance of an online video game store and inclu
 ## Installation
 
 1. Ensure Go is installed.
-2. Install required packages: Gin, MySQL, Gomail, Gorilla session, Email verifier, Password validator.
+2. Git clone the repository
+```
+git clone https://github.com/0xsissN/shadow-store-go.git
+```
+3. Install required packages: Gin, MySQL, Gomail, Gorilla session, Email verifier, Password validator.
 ```
 go get github.com/gin-gonic/gin
 ```
@@ -57,10 +59,10 @@ go get -u github.com/AfterShip/email-verifier
 ```
 go get -u github.com/wagslane/go-password-validator
 ```
-3. If CSS or images fail to load, adjust the server's static file path.
-4. Execute the SQL script in a database.
-5. Configure the env.go file
-6. Run the project and enjoy!
+4. If CSS or images fail to load, adjust the server's static file path.
+5. Execute the SQL script in a database.
+6. Configure the env.go file
+7. Run the project and enjoy!
 ```
 go run . 
 ```
