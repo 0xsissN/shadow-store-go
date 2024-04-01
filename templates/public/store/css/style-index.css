@@ -44,21 +44,6 @@ img.logo {
     background-color: #2f6e6e;
 }
 
-.bloque {
-    text-align: center;
-    margin-top: 30px;
-    background-color: #174d4d;
-    padding: 20px;
-    color: #ffffff;
-}
-
-.img-bloque {
-    margin-top: 20px;
-    justify-content: center;
-    display: flex;
-    gap: 20px;
-}
-
 footer {
     text-align: center;
     color: #ffffff;

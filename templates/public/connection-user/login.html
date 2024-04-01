@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,38 +7,25 @@
     <link rel="icon" href="/public/store/images/logo-main.png">
     <link rel="stylesheet" href="/public/connection-user/css/style-login.css">
 </head>
-
 <body>
-    <div id="bloque-1">
-        <h2>Login account</h2>
-    </div>
-
+    <div id="bloque-1"><h2>Login account</h2></div>
     <div class="bloque">
         <form action="/login" method="POST">
-            <input type="text" name="user-email-shadow" id="user-email-shadow" placeholder="Username / Email"
-                required><br><br>
+            <input type="text" name="user-email-shadow" id="user-email-shadow" placeholder="Username / Email" required><br><br>
             <input type="password" name="password-shadow" id="password-shadow" placeholder="Password" required><br><br>
             <input type="submit" value="Continue">
         </form>
         <button onclick="redirectToChangePassword()">Forget Password</button>
         <button onclick="redirectToRegister()">Sign Up</button>
     </div>
-
     <div class="bloque">
         {{if .message}}
         <h3>{{.message}}</h3>
         {{end}}
     </div>
-
     <script>
-        function redirectToChangePassword() {
-            window.location.href = "/passwordrecovery"
-        }
-
-        function redirectToRegister() {
-            window.location.href = "/register"
-        }
+        function redirectToChangePassword() { window.location.href = "/passwordrecovery" }
+        function redirectToRegister() { window.location.href = "/register" }
     </script>
 </body>
-
 </html>

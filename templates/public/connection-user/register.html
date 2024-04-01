@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +7,14 @@
     <link rel="icon" href="/public/store/images/logo-main.png">
     <link rel="stylesheet" href="/public/connection-user/css/style-register.css">
 </head>
-
 <body>
-    <div id="bloque-1">
-        <h2>Register account</h2>
-    </div>
+    <div id="bloque-1"><h2>Register account</h2></div>
     <div class="bloque">
         <form action="/register" method="POST">
             <input type="text" name="user-shadow" id="user-shadow" placeholder="Username" required>
             <input type="text" name="email-shadow" id="email-shadow" placeholder="Email" required>
             <input type="password" name="password-a-shadow" id="password-a-shadow" placeholder="Password" required>
-            <input type="password" name="password-b-shadow" id="password-b-shadow" placeholder="Re-enter password"
-                required>
+            <input type="password" name="password-b-shadow" id="password-b-shadow" placeholder="Re-enter password" required>
             <input type="submit" value="Continue">
         </form>
     </div>
@@ -29,5 +24,4 @@
         {{end}}
     </div>
 </body>
-
 </html>

@@ -54,7 +54,6 @@ func main() {
 
 	authUser.GET("/uindex", getUIndex)
 	authUser.GET("/ustore", getUStore)
-	authUser.GET("/uabout", getUAbout)
 
 	err := server.Run(":8081")
 	if err != nil {
@@ -277,22 +276,6 @@ func getUStore(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "u-store.html", nil)
-}
-
-func getUAbout(c *gin.Context) {
-	session, err := store.Get(c.Request, "session")
-	if err != nil {
-		c.Redirect(http.StatusForbidden, "/")
-		return
-	}
-
-	auth, ok := session.Values["authenticated"].(bool)
-	if !ok || !auth {
-		c.Redirect(http.StatusForbidden, "/")
-		return
-	}
-
-	c.HTML(http.StatusOK, "u-about.html", nil)
 }
 
 func getRecoveryPassword(c *gin.Context) {
