@@ -6,7 +6,7 @@ This project focuses on the design of a login and registration system for an onl
 
 - **Homepage:** Display of main page.
 - **Games:** Browse and view available games.
-- **User Authentication:** Ability to log in, register.
+- **User Authentication:** The foundational feature enabling users to securely access the system through logging in with existing credentials or registering for new accounts.
 - **Profile Management:** Users can manage their accounts, including view profile, change of password and account deletion.
 
 ## Technologies Used
