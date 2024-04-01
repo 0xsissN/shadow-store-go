@@ -1,14 +1,13 @@
 # Video Game Shadow Store
 
-This project aims to show the appearance of an online video game store and includes functionalities for the user.
+This project focuses on the design of a login and registration system for an online video game store, aiming to create a seamless and intuitive experience for users as they access the platform.
 
 ## Features
 
 - **Homepage:** Display of main page.
 - **Games:** Browse and view available games.
-- **About Us:** Store features.
-- **User Authentication:** Ability to log in, register, view profile, and log out.
-- **Profile Management:** Users can manage their accounts, including password change and account deletion.
+- **User Authentication:** Ability to log in, register.
+- **Profile Management:** Users can manage their accounts, including view profile, change of password and account deletion.
 
 ## Technologies Used
 
