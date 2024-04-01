@@ -1,11 +1,11 @@
 package main
 
 var (
-	MySqlUser    = "" // Sql username
-	MySqlPass    = "" // Sql password
-	MySqlAddress = "" // Sql address (localhost)
-	MySqlPort    = "" // Sql port (3306)
-	MySqlDB      = "" // Name database (shadowstoredb)
-	MailSend     = "" // Email
-	MailPassSend = "" // Password
+	MySqlUser    = "root"          // Sql username
+	MySqlPass    = "Passw0rd"      // Sql password
+	MySqlAddress = "localhost"     // Sql address (localhost)
+	MySqlPort    = "3306"          // Sql port (3306)
+	MySqlDB      = "shadowstoredb" // Name database (shadowstoredb)
+	MailSend     = ""              // Email
+	MailPassSend = ""              // Password
 )

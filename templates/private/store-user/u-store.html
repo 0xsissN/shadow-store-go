@@ -12,8 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <img src="/public/store/images/logo-main.png" alt="logo-main" width="50px" class="logo">
-                <a class="navbar-brand" href="/user/uindex">Shadow Store</a>
+                <img src="/public/store/images/logo-main.png" alt="logo-main" width="50px" class="logo"><a class="navbar-brand" href="/user/uindex">Shadow Store</a>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/user/uindex">Store</a></li>
@@ -58,28 +57,11 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <div class="card" style="width: 17rem;"><img src="/public/store/images/store/GamesNight4.jpg" class="card-img-top" alt="Nightingale">
-                            <div class="card-body"><h5 class="card-title">Nightingale</h5><p class="card-text">13.49 USDT</p></div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" style="width: 17rem;"><img src="/public/store/images/store/GamesRocket5.jpg" class="card-img-top" alt="Rocket League">
-                            <div class="card-body"><h5 class="card-title">Rocket League</h5><p class="card-text">Free</p></div>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="card" style="width: 17rem;"><img src="/public/store/images/store/GamesWolf6.jpg" class="card-img-top" alt="The Wolf Among Us 2">
-                            <div class="card-body"><h5 class="card-title">The Wolf Among Us 2</h5><p class="card-text">Soon</p></div>
-                        </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
         <script>
             function solve() {
-                const games = { "sk": "Skull and bones", "fo": "Fortnite", "bl": "Black Myth: Wukong", "ni": "Nightingale", "ro": "Rocket League", "th": "The Wolf Among Us 2"};
+                const games = { "sk": "Skull and bones", "fo": "Fortnite", "bl": "Black Myth: Wukong"};
                 const x = document.getElementById('gameCode').value.toLowerCase();
                 let res = "";
                 const a = x[0];
